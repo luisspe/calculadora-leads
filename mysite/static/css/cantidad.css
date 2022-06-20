@@ -3,9 +3,26 @@ h1 {
 }
 
 .datosCalculadora {
-
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    
 }
+
+.datosCalculadora .ladoIzquierdo{
+    width: 40%;
+}
+
+.datosCalculadora .ladoDerecho{
+    width: 40%;
+}
+.datosCalculadora .hola{
+    margin-top: 0;
+}
+
+
 
 .texto-cantidad {
     color: rgb(32, 32, 32);
@@ -14,7 +31,7 @@ h1 {
 }
 
 .izquierda {
-    background-color: rgb(255, 255, 255);
+    background-color: hsl(0, 0%, 98%);
 }
 
 .range {

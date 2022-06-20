@@ -8,7 +8,7 @@
 <div class="row">
     <div class="container d-flex align-items-center flex-column text-center">
         <div class="titulo">
-            <h1>Mejora tu forma de invertir como un profecional</h1>
+            <h1>Mejora tu forma de invertir como un profesional</h1>
             <p>Usa nuestros diferentes tipos de calculadoras para obtener el resultado que necesites</p>
         </div>
         <p class="texto-cantidad">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid praesentium placeat
@@ -20,112 +20,152 @@
 
 </div>
 
+
 <!-- SLIDER CLIENTES NUEVOS AL MES -->
 <div class="container datosCalculadora">
-    <div class="row">
-        <div class="container d-flex flex-column izquierda" style="margin-top: 200px;">
-            <div class="pregunta d-flex">
-                <h3>¿Cuantos nuevos clientes requieres al mes?</h3>
+
+    <div class="ladoIzquierdo">
+        <div class="row hola">
+            <div class="container d-flex flex-column izquierda mt-5" style="margin-top: 200px;">
+                <div class="pregunta d-flex">
+                    <h3>¿Cuantos nuevos clientes requieres al mes?</h3>
 
 
-            </div>
-            <div class="range mt-3">
-                <div class="slidervalue text-center">
-                    <span id="cantidadClientes" style="color: #664AFF;">0</span>
                 </div>
-                <div class="field">
-                    <div class="value left">0</div>
-                    <input id="slideCantidadClientes" type="range" min="0" max="100" value="0" steps="1">
-                    <div class="value right">100</div>
+                <div class="range mt-3">
+                    <div class="slidervalue text-center">
+                        <span id="cantidadClientes" style="color: #664AFF;">0</span>
+                    </div>
+                    <div class="field">
+                        <div class="value left">0</div>
+                        <input id="slideCantidadClientes" type="range" min="0" max="100" value="0" steps="1">
+                        <div class="value right">100</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDER INGRESO PROMEDIO POR CLIENTE -->
+        <div class="row">
+            <div class="container d-flex flex-column izquierda" style="margin-top: 50px;">
+                <div class="pregunta d-flex">
+                    <h3>¿Cuál es el ingreso promedio por cliente?</h3>
+
+                </div>
+                <div class="range mt-3">
+                    <div class="slidervalue text-center">
+                        <span id="promedioClientes" style="color: #664AFF;">0</span>
+                    </div>
+                    <div class="field">
+                        <div class="value left">0</div>
+                        <input id="slidePromedioClientes" type="range" min="0" max="30000" value="0" steps="10">
+                        <div class="value righ2">30000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDER INGRESOS TOTALES POR CLIENTES NUEVOS AL MES  -->
+        <div class="row">
+            <div class="container d-flex flex-column izquierda" style="margin-top: 50px;">
+                <div class="pregunta d-flex">
+                    <h3>Ingresos totales por clientes al mes</h3>
+                </div>
+                <div class="range mt-3">
+                    <div class="slidervalue text-center">
+                        <span id="totalesClientes" style="color: #664AFF;">0</span>
+                    </div>
+                    <div class="field">
+                        <div class="value left">0</div>
+                        <input id="slideTotalesClientes" type="range" min="0" max="100000" value="0" steps="1" readonly
+                            onmousedown="return false;">
+                        <div class="value righ2">100000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PORCENTAJE DE LEADS CONVIERTES A CLIENTES  -->
+        <div class="row">
+            <div class="container d-flex flex-column izquierda" style="margin-top: 50px;">
+                <div class="pregunta d-flex">
+                    <h3>¿Qué porcentaje de leads conviertes a clientes?</h3>
+                </div>
+                <div class="range mt-3">
+                    <div class="slidervalue text-center">
+                        <span id="porcentajeClientes" style="color: #664AFF;">%0</span>
+                    </div>
+                    <div class="field">
+                        <div class="value left">0</div>
+                        <input id="slidePorcentajeClientes" type="range" min="0" max="100" value="0" steps="1">
+                        <div class="value righ2">%100</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- SLIDER INGRESO PROMEDIO POR CLIENTE -->
-    <div class="row">
-        <div class="container d-flex flex-column izquierda" style="margin-top: 50px;">
-            <div class="pregunta d-flex">
-                <h3>¿Cuál es el ingreso promedio por cliente?</h3>
-
-            </div>
-            <div class="range mt-3">
-                <div class="slidervalue text-center">
-                    <span id="promedioClientes" style="color: #664AFF;">0</span>
+    <div class="ladoDerecho">
+        <!-- LEADS NECESARIOS POR MES  -->
+        <div class="row">
+            <div class="container d-flex flex-column izquierda" style="margin-top: 50px;">
+                <div class="pregunta d-flex">
+                    <h3>Nuevos leads necesarios por mes</h3>
                 </div>
-                <div class="field">
-                    <div class="value left">0</div>
-                    <input id="slidePromedioClientes" type="range" min="0" max="30000" value="0" steps="10">
-                    <div class="value righ2">30000</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- SLIDER INGRESOS TOTALES POR CLIENTES NUEVOS AL MES  -->
-    <div class="row">
-        <div class="container d-flex flex-column izquierda" style="margin-top: 50px;">
-            <div class="pregunta d-flex">
-                <h3>Ingresos totales por clientes al mes</h3>
-            </div>
-            <div class="range mt-3">
-                <div class="slidervalue text-center">
-                    <span id="totalesClientes" style="color: #664AFF;">0</span>
-                </div>
-                <div class="field">
-                    <div class="value left">0</div>
-                    <input id="slideTotalesClientes" type="range" min="0" max="100000" value="0" steps="1" readonly
-                        onmousedown="return false;">
-                    <div class="value righ2">100000</div>
+                <div class="range mt-3">
+                    <div class="slidervalue text-center">
+                        <span id="LeadsNecesarios" style="color: #664AFF;">0</span>
+                    </div>
+                    <div class="field">
+                        <div class="value left">0</div>
+                        <input id="slideLeadsNecesarios" type="range" min="0" max="100" value="0" steps="1" readonly
+                            onmousedown="return false">
+                        <div class="value righ2">100</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- PORCENTAJE DE LEADS CONVIERTES A CLIENTES  -->
-    <div class="row">
-        <div class="container d-flex flex-column izquierda" style="margin-top: 50px;">
-            <div class="pregunta d-flex">
-                <h3>¿Qué porcentaje de leads conviertes a clientes?</h3>
-            </div>
-            <div class="range mt-3">
-                <div class="slidervalue text-center">
-                    <span id="porcentajeClientes" style="color: #664AFF;">%0</span>
+        <!-- Porcentaje de visitas se convierte en Leads  -->
+        <div class="row">
+            <div class="container d-flex flex-column izquierda" style="margin-top: 50px;">
+                <div class="pregunta d-flex">
+                    <h3>¿Qué porcentaje de visitas se convierten en leads?</h3>
                 </div>
-                <div class="field">
-                    <div class="value left">0</div>
-                    <input id="slidePorcentajeClientes" type="range" min="0" max="100" value="0" steps="1">
-                    <div class="value righ2">%100</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- LEADS NECESARIOS POR MES  -->
-    <div class="row">
-        <div class="container d-flex flex-column izquierda" style="margin-top: 50px;">
-            <div class="pregunta d-flex">
-                <h3>Nuevos leads necesarios por mes</h3>
-            </div>
-            <div class="range mt-3">
-                <div class="slidervalue text-center">
-                    <span id="LeadsNecesarios" style="color: #664AFF;">0</span>
-                </div>
-                <div class="field">
-                    <div class="value left">0</div>
-                    <input id="slideLeadsNecesarios" type="range" min="0" max="100" value="0" steps="1" readonly
-                        onmousedown="return false">
-                    <div class="value righ2">100</div>
+                <div class="range mt-3">
+                    <div class="slidervalue text-center">
+                        <span id="visitasLeads" style="color: #664AFF;">0</span>
+                    </div>
+                    <div class="field">
+                        <div class="value left">0</div>
+                        <input id="slideVisitasLeads" type="range" min="0" max="100" value="0" steps="1">
+                        <div class="value righ2">%100</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
+        <!-- NUEVOS VISITANTES NECESARIOS POR MES -->
+        <div class="row">
+            <div class="container d-flex flex-column izquierda" style="margin-top: 50px;">
+                <div class="pregunta d-flex">
+                    <h3>Nuevos vistantes necesarios por mes</h3>
+                </div>
+                <div class="range mt-3">
+                    <div class="slidervalue text-center">
+                        <span id="visitantesNecesarios" style="color: #664AFF;">0</span>
+                    </div>
+                    <div class="field">
+                        <div class="value left">0</div>
+                        <input id="slideVisitantesNecesarios" type="range" min="0" max="20000" value="0" steps="1" >
+                        <div class="value righ2">20000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 
 </div>
-
 
 <script>
     /*slider clientes al mes*/
@@ -138,6 +178,11 @@
         slideValue.style.left = (value / 2) + "%";
         slideValue.classList.add("show");
         ingresoTotal();
+
+        if(slideValuePorcentaje.textContent != '%0'){
+            calcularLeads();
+
+        };
 
 
     });
@@ -159,6 +204,7 @@
         slideValueIngresoPromedio.classList.add("show");
 
         ingresoTotal();
+        
 
 
     });
@@ -199,6 +245,7 @@
 
         calcularLeads();
 
+
     });
     inputSliderPorcentaje.onblur = (() => {
         slideValuePorcentaje.classList.remove("show");
@@ -221,6 +268,45 @@
     });
 
 
+    /* PORCENTAJE DE VISITAS A LEADS */
+
+    const slideValueVisitas = document.getElementById("visitasLeads");
+    const inputSliderVisitas = document.getElementById("slideVisitasLeads");
+    inputSliderVisitas.oninput = (() => {
+        let value = inputSliderVisitas.value;
+        slideValueVisitas.textContent = '%' + value;
+        slideValueVisitas.style.left = (value / 2) + "%";
+        slideValueVisitas.classList.add("show");
+
+        calcularVisitantes();
+   
+
+    });
+    inputSliderVisitas.onblur = (() => {
+        slideValueVisitas.classList.remove("show");
+    });
+
+
+    /* VISITANTES NECESARIOS POR MES */
+
+    const slideValueVisitantesNecesarios = document.getElementById("visitantesNecesarios");
+    const inputSliderVisitantesNecesarios = document.getElementById("slideVisitantesNecesarios");
+    inputSliderVisitantesNecesarios.oninput = (() => {
+        let value = inputSliderVisitantesNecesarios.value;
+        slideValueVisitantesNecesarios.textContent = value;
+        slideValueVisitantesNecesarios.style.left = (value / 2) + "%";
+        slideValueVisitantesNecesarios.classList.add("show");
+
+
+    });
+    inputSliderVisitantesNecesarios.onblur = (() => {
+        slideValueVisitantesNecesarios.classList.remove("show");
+    });
+
+
+
+    // FUNCIONES DE LA CALCULADORA
+
     function calcularPromedio() {
         numeroPromedio = Math.round(Number(slideValueIngresoTotal.textContent) / Number(slideValue.textContent))
         inputSliderIngresoPromedio.value = numeroPromedio
@@ -237,7 +323,13 @@
         leadsNecesarios = Math.round(Number((slideValue.textContent) / Number(inputSliderPorcentaje.value)) * 100)
         inputSliderLeadsNecesarios.value = leadsNecesarios
         slideValueLeadsNecesarios.textContent = leadsNecesarios.toString();
-        console.log(leadsNecesarios)
+    };
+
+
+    function calcularVisitantes(){
+        visitantesNecesarios = Math.round(Number((slideValueLeadsNecesarios.textContent) / Number(inputSliderVisitas.value))* 100)
+        inputSliderVisitantesNecesarios.value = visitantesNecesarios
+        slideValueVisitantesNecesarios.textContent = visitantesNecesarios.toString();
     };
 
 
