@@ -155,8 +155,27 @@
                     </div>
                     <div class="field">
                         <div class="value left">0</div>
-                        <input id="slideVisitantesNecesarios" type="range" min="0" max="20000" value="0" steps="1" >
+                        <input id="slideVisitantesNecesarios" type="range" min="0" max="20000" value="0" steps="1">
                         <div class="value righ2">20000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COSTO DE VISITA AL SITIO WEB -->
+        <div class="row">
+            <div class="container d-flex flex-column izquierda" style="margin-top: 50px;">
+                <div class="pregunta d-flex">
+                    <h3>¿Cuánto me cuesta cada visita al sitio web?</h3>
+                </div>
+                <div class="range mt-3">
+                    <div class="slidervalue text-center">
+                        <span id="costoVisita" style="color: #664AFF;">0</span>
+                    </div>
+                    <div class="field">
+                        <div class="value left">0</div>
+                        <input id="slideCostoVisita" type="range" min="0" max="100" value="0" steps="1">
+                        <div class="value righ2">100</div>
                     </div>
                 </div>
             </div>
@@ -164,10 +183,39 @@
 
     </div>
 
+</div>
 
+<div class="container resultados mt-5 mb-5 ">
+    <div class="resultado">
+        <h3>¿Cuánto debo de invertir en marketing para lograr mi objetivo de nuevos clientes?</h3>
+        <h4 id="inversionM" class="text-success"><strong>$0</strong></h4>
+    </div>
 </div>
 
 <script>
+
+    /*slider clientes al mes*/
+
+    const slideValueCostoVisita = document.getElementById("costoVisita");
+    const inputSliderCostoVisita = document.getElementById("slideCostoVisita");
+    inputSliderCostoVisita.oninput = (() => {
+        let value = inputSliderCostoVisita.value;
+        slideValueCostoVisita.textContent = value;
+        slideValueCostoVisita.style.left = (value / 2) + "%";
+        slideValueCostoVisita.classList.add("show");
+
+        if (inputSliderVisitantesNecesarios.value > 0) {
+            calcularInversionMarketing();
+
+        };
+
+    });
+
+    inputSliderCostoVisita.onblur = (() => {
+        slideValueCostoVisita.classList.remove("show");
+    });
+
+
     /*slider clientes al mes*/
 
     const slideValue = document.getElementById("cantidadClientes");
@@ -179,7 +227,7 @@
         slideValue.classList.add("show");
         ingresoTotal();
 
-        if(slideValuePorcentaje.textContent != '%0'){
+        if (slideValuePorcentaje.textContent != '%0') {
             calcularLeads();
 
         };
@@ -204,7 +252,7 @@
         slideValueIngresoPromedio.classList.add("show");
 
         ingresoTotal();
-        
+
 
 
     });
@@ -244,6 +292,10 @@
         slideValuePorcentaje.classList.add("show");
 
         calcularLeads();
+        if (inputSliderLeadsNecesarios.value > 0 && inputSliderVisitas.value > 0) {
+            calcularVisitantes();
+
+        };
 
 
     });
@@ -279,7 +331,7 @@
         slideValueVisitas.classList.add("show");
 
         calcularVisitantes();
-   
+
 
     });
     inputSliderVisitas.onblur = (() => {
@@ -326,12 +378,17 @@
     };
 
 
-    function calcularVisitantes(){
-        visitantesNecesarios = Math.round(Number((slideValueLeadsNecesarios.textContent) / Number(inputSliderVisitas.value))* 100)
+    function calcularVisitantes() {
+        visitantesNecesarios = Math.round(Number((slideValueLeadsNecesarios.textContent) / Number(inputSliderVisitas.value)) * 100)
         inputSliderVisitantesNecesarios.value = visitantesNecesarios
         slideValueVisitantesNecesarios.textContent = visitantesNecesarios.toString();
     };
+    const inversionMar = document.getElementById("inversionM");
+    function calcularInversionMarketing() {
+        inversion = inputSliderVisitantesNecesarios.value * inputSliderCostoVisita.value
+        inversionMar.textContent = inversion.toString();
 
+    };
 
 
 </script>
