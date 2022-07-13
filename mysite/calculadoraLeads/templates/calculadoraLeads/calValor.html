@@ -1,243 +1,215 @@
 {% extends 'calculadoraLeads/main.html' %}
 {% load static %}
-
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/valor.css' %}">
+{% endblock %}
 {% block content %}
-<h1>Valor</h1>
 
-<div class="row">
-    <div class="container d-flex align-items-center flex-column text-center">
-        <div class="titulo">
-            <h1>Mejora tu forma de invertir como un profecional</h1>
-            <p>Usa nuestros diferentes tipos de calculadoras para obtener el resultado que necesites</p>
-        </div>
-        <p class="texto-cantidad">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid praesentium placeat
-            hic, fuga velit,
-            laboriosam cum ab, magnam fugiat neque nam quia illum incidunt. At doloremque, quisquam excepturi officiis
-            non consequuntur modi doloribus blanditiis odit commodi, unde porro cumque mollitia. Nobis neque ullam
-            dolores, sunt ad hic laudantium cupiditate officiis.</p>
+
+<div class="container textoCentral mb-5 pl-5">
+  <p class="textoarriba"><span>Welcome.</span> Our leads calculator is a tool that helps you effortlessly calculate your marketing investment need!</p>
+</div>
+
+
+<div class="container d-flex justify-content-around  flex-wrap">
+  <!--CONTENEDOR IZQUIERDA-->
+  <div class="container contenedorIngresaDatos d-flex justify-content-top flex-column">
+    <h6>GOAL OF NEW CLIENTS PER MONTH</h6>
+    <div class="clientsPerMonthValue">
+      <input id="clientesPorMes" type="text" placeholder="000">
     </div>
+
+    <div class="averageRevenueText">
+      <p>Average revenue per customer</p>
+      <input onblur="ingresoTotal();" id="ingresoPromedioPorCliente" class="averagerevenue" type="text" placeholder="  $ 000,000,000  "><span class="ml-2">MXN</span>
+    </div>
+
+    <div class="leadsConvertIntoCostumerPercentage mt-3">
+      <p>% of leads that convert into customers</p>
+      <div class="field range">
+        
+        <input id="slidePorcentajeClientes" type="range" min="0" max="100" value="0" steps="10">
+        <div id="porcentajeClientes" class="value righ2">0%</div>
+      </div>
+    </div>
+
+    <div class="leadsConvertIntoCostumerPercentage mt-3">
+      <p>% of website visits that convert into leads</p>
+      <div class="field range">
+        
+        <input id="slidePromedioClientes" type="range" min="0" max="30000" value="0" steps="10">
+        <div class="value righ2">0%</div>
+      </div>
+    </div>
+
+
+   
+
+
+    <div class="costPerVisit">
+      <p>Cost per visit</p>
+      <input class="averagerevenue" type="text" placeholder="  $ 000,000,000  "><span class="ml-2">MXN</span>
+    </div>
+
+    <!--FIN DE CONTENDEDOR IZQUIERDA-->
+
+    
+
+  </div>
+
+  <div class="contenedor d-flex justify-content-around flex-column">
+
+    <div class="container circulosPorcentaje d-flex justify-content-around">
+
+      <div class="container  contenedor3">
+
+        <div class="circular-progress" id="circular-progress">
+          <div class="value-container description">NEW LEADS NEEDED<br> PER MONTH</div>
+          <div class="value-container" id="valor-circulo">0%</div>
+          
+        </div>
+        <div class="newClientsLeads">
+          <p>New  clients</p>
+          <span>000</span>
+        </div>
+      </div>
+  
+      <div class="container contenedor4">
+        <div class="circular-progress" id="circular-progreso">
+          <div class="value-container description">NEW WEBSITE VISITORS <br> NEEDED PER MONT</div>
+          <div class="value-container" id="vs">0%</div>
+          
+        </div>
+
+        <div class="newClientsLeads">
+          <p>New Leads</p>
+          <span>000</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="container contenedor-Resultados">
+      <div class="resultado d-flex justify-content-between">
+        <p>Total revenue from new customers per month</p>
+        <span id="resultadoIngresosTotales">$ 000,000,000 MXN</span>
+      </div>
+      <div class="resultado d-flex justify-content-between necesaryInvestment">
+        <p>investment in marketing necessary to achieve <br> the goal</p>
+        <span>$ 000,000,000 MXN</span>
+      </div>
+      <div class="container d-flex  split pr-0">
+        <div class="resultado d-flex justify-content-around bloque">
+          <p class="mr-2">COST PER LEAD</p>
+          <span>$ 000,000,000 MXN</span>
+        </div>
+        <div class="resultado d-flex justify-content-between ml-3 bloque">
+          <p>Return On Advertising Spend</p>
+          <span>%000</span>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
+
+  
+
+  
 
 </div>
 
-<!-- SLIDER CLIENTES NUEVOS AL MES -->
-<div class="container datosCalculadora">
-    <div class="row">
-        <div class="container d-flex flex-column izquierda" style="margin-top: 200px;">
-            <div class="pregunta d-flex">
-                <h3>¿Cuantos nuevos clientes requieres al mes?</h3>
-
-
-            </div>
-            <div class="range mt-3">
-                <div class="slidervalue text-center">
-                    <span id="cantidadClientes" style="color: #664AFF;">0</span>
-                </div>
-                <div class="field">
-                    <div class="value left">0</div>
-                    <input id="slideCantidadClientes" type="range" min="0" max="100" value="0" steps="1">
-                    <div class="value right">100</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- SLIDER INGRESO PROMEDIO POR CLIENTE -->
-    <div class="row">
-        <div class="container d-flex flex-column izquierda" style="margin-top: 50px;">
-            <div class="pregunta d-flex">
-                <h3>¿Cuál es el ingreso promedio por cliente?</h3>
-
-            </div>
-            <div class="range mt-3">
-                <div class="slidervalue text-center">
-                    <span id="promedioClientes" style="color: #664AFF;">0</span>
-                </div>
-                <div class="field">
-                    <div class="value left">0</div>
-                    <input id="slidePromedioClientes" type="range" min="0" max="30000" value="0" steps="10">
-                    <div class="value righ2">30000</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- SLIDER INGRESOS TOTALES POR CLIENTES NUEVOS AL MES  -->
-    <div class="row">
-        <div class="container d-flex flex-column izquierda" style="margin-top: 50px;">
-            <div class="pregunta d-flex">
-                <h3>Ingresos totales por clientes al mes</h3>
-            </div>
-            <div class="range mt-3">
-                <div class="slidervalue text-center">
-                    <span id="totalesClientes" style="color: #664AFF;">0</span>
-                </div>
-                <div class="field">
-                    <div class="value left">0</div>
-                    <input id="slideTotalesClientes" type="range" min="0" max="100000" value="0" steps="1" readonly
-                        onmousedown="return false;">
-                    <div class="value righ2">100000</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- PORCENTAJE DE LEADS CONVIERTES A CLIENTES  -->
-    <div class="row">
-        <div class="container d-flex flex-column izquierda" style="margin-top: 50px;">
-            <div class="pregunta d-flex">
-                <h3>¿Qué porcentaje de leads conviertes a clientes?</h3>
-            </div>
-            <div class="range mt-3">
-                <div class="slidervalue text-center">
-                    <span id="porcentajeClientes" style="color: #664AFF;">%0</span>
-                </div>
-                <div class="field">
-                    <div class="value left">0</div>
-                    <input id="slidePorcentajeClientes" type="range" min="0" max="100" value="0" steps="1">
-                    <div class="value righ2">%100</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- LEADS NECESARIOS POR MES  -->
-    <div class="row">
-        <div class="container d-flex flex-column izquierda" style="margin-top: 50px;">
-            <div class="pregunta d-flex">
-                <h3>Nuevos leads necesarios por mes</h3>
-            </div>
-            <div class="range mt-3">
-                <div class="slidervalue text-center">
-                    <span id="LeadsNecesarios" style="color: #664AFF;">0</span>
-                </div>
-                <div class="field">
-                    <div class="value left">0</div>
-                    <input id="slideLeadsNecesarios" type="range" min="0" max="100" value="0" steps="1" readonly
-                        onmousedown="return false">
-                    <div class="value righ2">100</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-</div>
 
 
 <script>
-    /*slider clientes al mes*/
+  let clientesAlMes = document.getElementById("clientesPorMes");
 
-    const slideValue = document.getElementById("cantidadClientes");
-    const inputSlider = document.getElementById("slideCantidadClientes");
-    inputSlider.oninput = (() => {
-        let value = inputSlider.value;
-        slideValue.textContent = value;
-        slideValue.style.left = (value / 2) + "%";
-        slideValue.classList.add("show");
-        ingresoTotal();
+  
+  const slideValuePorcentaje = document.getElementById("porcentajeClientes");
+  const inputSliderPorcentaje = document.getElementById("slidePorcentajeClientes");
+  inputSliderPorcentaje.oninput = (() => {
+      let value = inputSliderPorcentaje.value;
+      slideValuePorcentaje.textContent = '%' + value;
+      slideValuePorcentaje.style.left = (value / 2) + "%";
+      slideValuePorcentaje.classList.add("show");
 
-
-    });
-
-
-    inputSlider.onblur = (() => {
-        slideValue.classList.remove("show");
-    });
+      
+      console.log(value*clientesAlMes.value);
 
 
-    /*slider ingreso promedio por cliente*/
-
-    const slideValueIngresoPromedio = document.getElementById("promedioClientes");
-    const inputSliderIngresoPromedio = document.getElementById("slidePromedioClientes");
-    inputSliderIngresoPromedio.oninput = (() => {
-        let value2 = inputSliderIngresoPromedio.value;
-        slideValueIngresoPromedio.textContent = value2;
-        slideValueIngresoPromedio.style.left = (value2 / 2) + "%";
-        slideValueIngresoPromedio.classList.add("show");
-
-        ingresoTotal();
-
-
-    });
-
-
-
-    inputSliderIngresoPromedio.onblur = (() => {
-        slideValueIngresoPromedio.classList.remove("show");
-    });
-
-    /*slider ingreso totales por clientes al mes*/
-    const slideValueIngresoTotal = document.getElementById("totalesClientes");
-    const inputSliderIngresoTotal = document.getElementById("slideTotalesClientes");
-    inputSliderIngresoTotal.oninput = (() => {
-        let value3 = inputSliderIngresoTotal.value;
-        slideValueIngresoTotal.textContent = value3;
-        slideValueIngresoTotal.style.left = (value3 / 2) + "%";
-        slideValueIngresoTotal.classList.add("show");
-
-
-    });
-
-
-
-    inputSliderIngresoTotal.onblur = (() => {
-        slideValueIngresoTotal.classList.remove("show");
-    });
-
-    /* PORCENTAJE DE LEADS CONVIERTES A CLIENTES */
-
-    const slideValuePorcentaje = document.getElementById("porcentajeClientes");
-    const inputSliderPorcentaje = document.getElementById("slidePorcentajeClientes");
-    inputSliderPorcentaje.oninput = (() => {
-        let value = inputSliderPorcentaje.value;
-        slideValuePorcentaje.textContent = '%' + value;
-        slideValuePorcentaje.style.left = (value / 2) + "%";
-        slideValuePorcentaje.classList.add("show");
-
-        calcularLeads();
-
-    });
-    inputSliderPorcentaje.onblur = (() => {
+  });
+  inputSliderPorcentaje.onblur = (() => {
         slideValuePorcentaje.classList.remove("show");
-    });
-
-    /* leads necesarios por mes */
-
-    const slideValueLeadsNecesarios = document.getElementById("LeadsNecesarios");
-    const inputSliderLeadsNecesarios = document.getElementById("slideLeadsNecesarios");
-    inputSliderLeadsNecesarios.oninput = (() => {
-        let value = inputSliderLeadsNecesarios.value;
-        slideValueLeadsNecesarios.textContent = value;
-        slideValueLeadsNecesarios.style.left = (value / 2) + "%";
-        slideValueLeadsNecesarios.classList.add("show");
+  });
 
 
-    });
-    inputSliderLeadsNecesarios.onblur = (() => {
-        slideValueLeadsNecesarios.classList.remove("show");
-    });
-
-
-    function calcularPromedio() {
-        numeroPromedio = Math.round(Number(slideValueIngresoTotal.textContent) / Number(slideValue.textContent))
-        inputSliderIngresoPromedio.value = numeroPromedio
-        slideValueIngresoPromedio.textContent = numeroPromedio.toString();
-    };
-
+    /* FORMULAS DE RESULTADOS */
+    
+    let ingresoPromedioPorCliente = document.getElementById("ingresoPromedioPorCliente");
+    let resultadoIngresosTotales = document.getElementById("resultadoIngresosTotales");
     function ingresoTotal() {
-        ingresototal = Number(slideValue.textContent) * Number(slideValueIngresoPromedio.textContent)
-        slideValueIngresoTotal.textContent = ingresototal.toString();
-        inputSliderIngresoTotal.value = ingresototal
+        ingresototal = (clientesAlMes.value * ingresoPromedioPorCliente.value);
+        resultadoIngresosTotales.textContent = '$ '+ingresototal+' MXN'
+        
     };
 
-    function calcularLeads() {
-        leadsNecesarios = Math.round(Number((slideValue.textContent) / Number(inputSliderPorcentaje.value)) * 100)
-        inputSliderLeadsNecesarios.value = leadsNecesarios
-        slideValueLeadsNecesarios.textContent = leadsNecesarios.toString();
-        console.log(leadsNecesarios)
+    /* ----------  CIRCULOS DE PORCENTAJE   */  
+
+    let progressBar1 = document.getElementById("circular-progress");
+    let valueContainer1 = document.getElementById("valor-circulo")
+
+    let progressValue1 = 0;
+    let progressEndValue1 = 900;
+    let speed = 0.5
+
+    let progress = setInterval( () =>{
+
+      progressValue1++;
+      valueContainer1.textContent = `${progressValue1}`
+      progressBar1.style.background = `conic-gradient(
+        
+        #8400FF ${progressValue1 * 0.4}deg,
+        #8400ff10 ${progressValue1 * 0.4}deg
+      
+      )`;
+      if(progressValue1 == progressEndValue1){
+        clearInterval(progress);
+      }
+      
+    }, speed)
+
+    let progressBarDos = document.getElementById("circular-progreso");
+    let valueContainerDos = document.getElementById("vs")
+
+    let progressValueDos = 0;
+    let progressEndValueDos = 0;
+    let speedeDos = 10
+    if(progressEndValueDos > 0){
+
+      let progresDos = setInterval( () =>{
+
+        progressValueDos++;
+        valueContainerDos.textContent = `${progressValueDos}`
+        progressBarDos.style.background = `conic-gradient(
+          
+          #8400FF ${progressValueDos * 0.9}deg,
+          #8400ff10 ${progressValueDos * 0.9}deg
+        
+        )`;
+        if(progressValueDos == progressEndValueDos){
+          clearInterval(progresDos);
+        }
+        
+      }, speedeDos)
     };
+
+    
+
+
+   
+
+
+
 
 
 
