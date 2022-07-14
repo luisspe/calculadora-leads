@@ -16,20 +16,20 @@
   <div class="container contenedorIngresaDatos d-flex justify-content-top flex-column">
     <h6>GOAL OF NEW CLIENTS PER MONTH</h6>
     <div class="clientsPerMonthValue">
-      <input id="clientesPorMes" type="text" placeholder="000">
+      <input id="clientesPorMes" type="text" placeholder="000" maxlength="3">
     </div>
 
     <div class="averageRevenueText">
       <p>Average revenue per customer</p>
-      <input onblur="ingresoTotal();" id="ingresoPromedioPorCliente" class="averagerevenue" type="text" placeholder="  $ 000,000,000  "><span class="ml-2">MXN</span>
+      <input onkeyup="ingresoTotal();" id="ingresoPromedioPorCliente" class="averagerevenue" type="text" placeholder="  $ 000,000,000  " maxlength="6"><span class="ml-2">MXN</span>
     </div>
 
     <div class="leadsConvertIntoCostumerPercentage mt-3">
       <p>% of leads that convert into customers</p>
       <div class="field range">
         
-        <input id="slidePorcentajeClientes" type="range" min="0" max="100" value="0" steps="10">
-        <div id="porcentajeClientes" class="value righ2">0%</div>
+        <input id="slidePorcentajeClientes" type="range" min="0" max="100" value="0" steps="1">
+        <div id="porcentajeClientes" class="value righ2">%0</div>
       </div>
     </div>
 
@@ -37,8 +37,8 @@
       <p>% of website visits that convert into leads</p>
       <div class="field range">
         
-        <input id="slidePromedioClientes" type="range" min="0" max="30000" value="0" steps="10">
-        <div class="value righ2">0%</div>
+        <input id="slidePorcentajeClientes2" type="range" min="0" max="100" value="0" steps="1">
+        <div id="porcetajeClientes2" class="value righ2">%0</div>
       </div>
     </div>
 
@@ -65,7 +65,7 @@
 
         <div class="circular-progress" id="circular-progress">
           <div class="value-container description">NEW LEADS NEEDED<br> PER MONTH</div>
-          <div class="value-container" id="valor-circulo">0%</div>
+          <div class="value-container" id="valor-circulo">0</div>
           
         </div>
         <div class="newClientsLeads">
@@ -122,9 +122,16 @@
 
 
 <script>
+  /*------DECLARACIÓN VARIABLES---------*/
   let clientesAlMes = document.getElementById("clientesPorMes");
-
+  let progressValue1 = 0;
+  let progressEndValue1 = 900;
+  let progressBar1 = document.getElementById("circular-progress");
+  let valueContainer1 = document.getElementById("valor-circulo")
+  let speed = 0.5
   
+
+  /*----PRIMER SLIDER Y PORCENTAJE CIRCULAR----*/
   const slideValuePorcentaje = document.getElementById("porcentajeClientes");
   const inputSliderPorcentaje = document.getElementById("slidePorcentajeClientes");
   inputSliderPorcentaje.oninput = (() => {
@@ -133,13 +140,82 @@
       slideValuePorcentaje.style.left = (value / 2) + "%";
       slideValuePorcentaje.classList.add("show");
 
+      leadsAlMes = value*clientesAlMes.value
       
-      console.log(value*clientesAlMes.value);
+      progressEndValue1 = leadsAlMes
 
+      
 
   });
   inputSliderPorcentaje.onblur = (() => {
-        slideValuePorcentaje.classList.remove("show");
+
+    
+    slideValuePorcentaje.classList.remove("show");
+
+  });
+
+  
+  inputSliderPorcentaje.onmousedown = (() =>{
+
+    if (inputSliderPorcentaje.value >0){
+      progressValue1 = 0;
+      valueContainer1.textContent = 0
+      progressBar1.style.background = `conic-gradient(
+          
+          #8400FF ${progressValue1 * 0.4}deg,
+          #8400ff10 ${progressValue1 * 0.4}deg
+
+      )`;
+    };
+    
+  });
+
+  
+  inputSliderPorcentaje.onmouseup = (() => {
+
+    if (clientesAlMes.value >= 1 && progressValue1 == 0 && inputSliderPorcentaje.value >=1){
+
+      let progress = setInterval( () =>{
+
+        progressValue1++;
+        valueContainer1.textContent = `${progressValue1}`
+        progressBar1.style.background = `conic-gradient(
+          
+          #8400FF ${progressValue1 * 0.4}deg,
+          #8400ff10 ${progressValue1 * 0.4}deg
+
+        )`;
+        if(progressValue1 == progressEndValue1){
+          clearInterval(progress);
+        }
+
+      }, speed)
+
+    };
+
+  });
+
+
+  /*-----SEGUNDO SLIDER Y PORCENTAJE CIRCULAR------*/
+  const slideValuePorcentaje2 = document.getElementById("porcetajeClientes2");
+  const inputSliderPorcentaje2 = document.getElementById("slidePorcentajeClientes2");
+  inputSliderPorcentaje2.oninput = (() => {
+      let value2 = inputSliderPorcentaje2.value;
+      slideValuePorcentaje2.textContent = '%' + value2;
+      slideValuePorcentaje2.style.left = (value2 / 2) + "%";
+      slideValuePorcentaje2.classList.add("show");
+
+      visitantesNecesarios = Math.round(progressEndValue1 / inputSliderPorcentaje2.value) * 100;
+      console.log(visitantesNecesarios)
+      
+
+
+  });
+  inputSliderPorcentaje2.onblur = (() => {
+
+    
+    slideValuePorcentaje2.classList.remove("show");
+
   });
 
 
@@ -153,54 +229,38 @@
         
     };
 
+
+
+
     /* ----------  CIRCULOS DE PORCENTAJE   */  
 
-    let progressBar1 = document.getElementById("circular-progress");
-    let valueContainer1 = document.getElementById("valor-circulo")
+    
 
-    let progressValue1 = 0;
-    let progressEndValue1 = 900;
-    let speed = 0.5
-
-    let progress = setInterval( () =>{
-
-      progressValue1++;
-      valueContainer1.textContent = `${progressValue1}`
-      progressBar1.style.background = `conic-gradient(
-        
-        #8400FF ${progressValue1 * 0.4}deg,
-        #8400ff10 ${progressValue1 * 0.4}deg
-      
-      )`;
-      if(progressValue1 == progressEndValue1){
-        clearInterval(progress);
-      }
-      
-    }, speed)
+    
 
     let progressBarDos = document.getElementById("circular-progreso");
     let valueContainerDos = document.getElementById("vs")
 
     let progressValueDos = 0;
-    let progressEndValueDos = 0;
-    let speedeDos = 10
+    let progressEndValueDos = 5000;
+    let speedeDos = 0
     if(progressEndValueDos > 0){
 
       let progresDos = setInterval( () =>{
 
-        progressValueDos++;
+        progressValueDos  = progressValueDos +10;
         valueContainerDos.textContent = `${progressValueDos}`
         progressBarDos.style.background = `conic-gradient(
           
-          #8400FF ${progressValueDos * 0.9}deg,
-          #8400ff10 ${progressValueDos * 0.9}deg
+          #8400FF ${progressValueDos * 0.036}deg,
+          #8400ff10 ${progressValueDos * 0.036}deg
         
         )`;
         if(progressValueDos == progressEndValueDos){
           clearInterval(progresDos);
         }
         
-      }, speedeDos)
+      },speedeDos)
     };
 
     
