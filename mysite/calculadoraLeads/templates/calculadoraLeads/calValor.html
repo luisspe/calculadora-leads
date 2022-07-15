@@ -8,6 +8,7 @@
 
 <div class="container textoCentral mb-5 pl-5">
   <p class="textoarriba"><span>Welcome.</span> Our leads calculator is a tool that helps you effortlessly calculate your marketing investment need!</p>
+  <p>Enter your company details in the box on the left.</p>
 </div>
 
 
@@ -125,10 +126,19 @@
   /*------DECLARACIÓN VARIABLES---------*/
   let clientesAlMes = document.getElementById("clientesPorMes");
   let progressValue1 = 0;
+  let progressValueDos = 0;
   let progressEndValue1 = 900;
+  let progressEndValueDos = 10000;
   let progressBar1 = document.getElementById("circular-progress");
   let valueContainer1 = document.getElementById("valor-circulo")
   let speed = 0.5
+
+
+
+  let progressBarDos = document.getElementById("circular-progreso");
+  let valueContainerDos = document.getElementById("vs")
+
+  let speedeDos = 0
   
 
   /*----PRIMER SLIDER Y PORCENTAJE CIRCULAR----*/
@@ -140,7 +150,7 @@
       slideValuePorcentaje.style.left = (value / 2) + "%";
       slideValuePorcentaje.classList.add("show");
 
-      leadsAlMes = value*clientesAlMes.value
+      leadsAlMes = Math.round(clientesAlMes.value / value ) *100
       
       progressEndValue1 = leadsAlMes
 
@@ -207,6 +217,7 @@
 
       visitantesNecesarios = Math.round(progressEndValue1 / inputSliderPorcentaje2.value) * 100;
       console.log(visitantesNecesarios)
+      progressEndValueDos = visitantesNecesarios
       
 
 
@@ -215,6 +226,50 @@
 
     
     slideValuePorcentaje2.classList.remove("show");
+
+  });
+
+  inputSliderPorcentaje2.onmousedown = (() =>{
+
+    if (inputSliderPorcentaje2.value >0){
+      progressValueDos = 0;
+      valueContainerDos.textContent = 0
+      progressBarDos.style.background = `conic-gradient(
+          
+          #8400FF ${progressValueDos * 0.4}deg,
+          #8400ff10 ${progressValueDos * 0.4}deg
+
+      )`;
+    };
+
+  });
+
+
+
+
+
+  inputSliderPorcentaje2.onmouseup = (() => {
+
+    if (visitantesNecesarios >= 1 && progressValueDos == 0 && inputSliderPorcentaje2.value >=1){
+      if(progressEndValueDos > 0){
+
+        let progresDos = setInterval( () =>{
+
+          progressValueDos  = progressValueDos +10;
+          valueContainerDos.textContent = `${progressValueDos}`
+          progressBarDos.style.background = `conic-gradient(
+            
+            #8400FF ${progressValueDos * 0.036}deg,
+            #8400ff10 ${progressValueDos * 0.036}deg
+          
+          )`;
+          if(progressValueDos == progressEndValueDos){
+            clearInterval(progresDos);
+          }
+          
+        },speedeDos)
+      };
+    };
 
   });
 
@@ -235,40 +290,6 @@
     /* ----------  CIRCULOS DE PORCENTAJE   */  
 
     
-
-    
-
-    let progressBarDos = document.getElementById("circular-progreso");
-    let valueContainerDos = document.getElementById("vs")
-
-    let progressValueDos = 0;
-    let progressEndValueDos = 5000;
-    let speedeDos = 0
-    if(progressEndValueDos > 0){
-
-      let progresDos = setInterval( () =>{
-
-        progressValueDos  = progressValueDos +10;
-        valueContainerDos.textContent = `${progressValueDos}`
-        progressBarDos.style.background = `conic-gradient(
-          
-          #8400FF ${progressValueDos * 0.036}deg,
-          #8400ff10 ${progressValueDos * 0.036}deg
-        
-        )`;
-        if(progressValueDos == progressEndValueDos){
-          clearInterval(progresDos);
-        }
-        
-      },speedeDos)
-    };
-
-    
-
-
-   
-
-
 
 
 
