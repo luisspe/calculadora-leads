@@ -6,31 +6,31 @@
 {% block content %}
 
 
-<div class="container textoCentral mb-5 pl-5">
-  <p class="textoarriba"><span>Welcome.</span> Our leads calculator is a tool that helps you effortlessly calculate your marketing investment need!</p>
+<div class="container-xxl textoCentral mb-5 pl-5">
+  <p class="textoarriba mb-1"><span>Welcome.</span> Our leads calculator is a tool that helps you effortlessly calculate your marketing investment</p>
   <p>Enter your company details in the box on the left.</p>
 </div>
 
 
-<div class="container d-flex justify-content-around  flex-wrap">
+<div class="container d-flex justify-content-around  flex-wrap padre">
   <!--CONTENEDOR IZQUIERDA-->
   <div class="container contenedorIngresaDatos d-flex justify-content-top flex-column">
     <h6>GOAL OF NEW CLIENTS PER MONTH</h6>
     <div class="clientsPerMonthValue">
-      <input id="clientesPorMes" type="text" placeholder="000" maxlength="3">
+      <input id="clientesPorMes" type="text" placeholder="000" maxlength="3" type="number" ondrop="return false;" onpaste="return false;">
     </div>
 
     <div class="averageRevenueText">
       <p>Average revenue per customer</p>
-      <input onkeyup="ingresoTotal();" id="ingresoPromedioPorCliente" class="averagerevenue" type="text" placeholder="  $ 000,000,000  " maxlength="6"><span class="ml-2">MXN</span>
+      <input onkeyup="ingresoTotal();" id="ingresoPromedioPorCliente" class="averagerevenue" type="number" placeholder="  $ 000,000,000  " maxlength="6" ondrop="return false;" onpaste="return false;"><span class="ml-2">MXN</span>
     </div>
 
     <div class="leadsConvertIntoCostumerPercentage mt-3">
-      <p>% of leads that convert into customers</p>
+      <p>% of potencial clients that convert into customers</p>
       <div class="field range">
         
         <input id="slidePorcentajeClientes" type="range" min="0" max="100" value="0" steps="1">
-        <div id="porcentajeClientes" class="value righ2">%0</div>
+        <div id="porcentajeClientes" class="value righ2">0%</div>
       </div>
     </div>
 
@@ -39,7 +39,7 @@
       <div class="field range">
         
         <input id="slidePorcentajeClientes2" type="range" min="0" max="100" value="0" steps="1">
-        <div id="porcetajeClientes2" class="value righ2">%0</div>
+        <div id="porcetajeClientes2" class="value righ2">0%</div>
       </div>
     </div>
 
@@ -49,7 +49,7 @@
 
     <div class="costPerVisit">
       <p>Cost per visit</p>
-      <input class="averagerevenue" type="text" placeholder="  $ 000,000,000  "><span class="ml-2">MXN</span>
+      <input onkeyup="inversion()" id="precioVisita" class="averagerevenue" type="number" ondrop="return false;" onpaste="return false;" placeholder="  $ 000  "><span class="ml-2" style="font-weight:600 ;">MXN</span>
     </div>
 
     <!--FIN DE CONTENDEDOR IZQUIERDA-->
@@ -69,23 +69,17 @@
           <div class="value-container" id="valor-circulo">0</div>
           
         </div>
-        <div class="newClientsLeads">
-          <p>New  clients</p>
-          <span>000</span>
-        </div>
+        
       </div>
   
       <div class="container contenedor4">
         <div class="circular-progress" id="circular-progreso">
-          <div class="value-container description">NEW WEBSITE VISITORS <br> NEEDED PER MONT</div>
-          <div class="value-container" id="vs">0%</div>
+          <div class="value-container description">NEW WEBSITE VISITORS <br> NEEDED PER MONTH</div>
+          <div class="value-container" id="vs">0</div>
           
         </div>
 
-        <div class="newClientsLeads">
-          <p>New Leads</p>
-          <span>000</span>
-        </div>
+        
       </div>
 
     </div>
@@ -93,32 +87,34 @@
     <div class="container contenedor-Resultados">
       <div class="resultado d-flex justify-content-between">
         <p>Total revenue from new customers per month</p>
-        <span id="resultadoIngresosTotales">$ 000,000,000 MXN</span>
+        <span id="resultadoIngresosTotales">$ 000 MXN</span>
       </div>
       <div class="resultado d-flex justify-content-between necesaryInvestment">
         <p>investment in marketing necessary to achieve <br> the goal</p>
-        <span>$ 000,000,000 MXN</span>
+        <span id="texto-inversion">$ 000 MXN</span>
       </div>
       <div class="container d-flex  split pr-0">
-        <div class="resultado d-flex justify-content-around bloque">
+        <div class="resultado d-flex justify-content-around mr-3 bloque">
           <p class="mr-2">COST PER LEAD</p>
-          <span>$ 000,000,000 MXN</span>
+          <span id="costPerLead">$ 000 MXN</span>
         </div>
-        <div class="resultado d-flex justify-content-between ml-3 bloque">
+        <div class="resultado d-flex justify-content-between  bloque bloqueDos">
           <p>Return On Advertising Spend</p>
-          <span>%000</span>
+          <span id="ROASTEXT">000%</span>
         </div>
         
       </div>
+      
+      
     </div>
     
   </div>
 
-  
-
-  
-
 </div>
+<div class="container textoCentral mb-5 pl-5">
+  <a href="" class="contenedor3">reset</a>
+</div>
+
 
 
 
@@ -127,13 +123,16 @@
   let clientesAlMes = document.getElementById("clientesPorMes");
   let progressValue1 = 0;
   let progressValueDos = 0;
-  let progressEndValue1 = 900;
-  let progressEndValueDos = 10000;
+  let progressEndValue1 = 0;
+  let progressEndValueDos = 0;
   let progressBar1 = document.getElementById("circular-progress");
   let valueContainer1 = document.getElementById("valor-circulo")
   let speed = 0.5
 
-
+  let costPerVisit = document.getElementById("precioVisita");
+  let textoInversion = document.getElementById("texto-inversion");
+  let costPerLead = document.getElementById("costPerLead")
+  let roastext = document.getElementById("ROASTEXT")
 
   let progressBarDos = document.getElementById("circular-progreso");
   let valueContainerDos = document.getElementById("vs")
@@ -150,9 +149,9 @@
       slideValuePorcentaje.style.left = (value / 2) + "%";
       slideValuePorcentaje.classList.add("show");
 
-      leadsAlMes = Math.round(clientesAlMes.value / value ) *100
+      leadsAlMes = Math.round(clientesAlMes.value / value  * 100);
       
-      progressEndValue1 = leadsAlMes
+      progressEndValue1 = leadsAlMes;
 
       
 
@@ -174,7 +173,6 @@
           
           #8400FF ${progressValue1 * 0.4}deg,
           #8400ff10 ${progressValue1 * 0.4}deg
-
       )`;
     };
     
@@ -191,9 +189,8 @@
         valueContainer1.textContent = `${progressValue1}`
         progressBar1.style.background = `conic-gradient(
           
-          #8400FF ${progressValue1 * 0.4}deg,
-          #8400ff10 ${progressValue1 * 0.4}deg
-
+          #8400FF ${inputSliderPorcentaje.value * 3.6}deg,
+          #8400ff10 ${inputSliderPorcentaje.value * 3.6}deg
         )`;
         if(progressValue1 == progressEndValue1){
           clearInterval(progress);
@@ -202,6 +199,7 @@
       }, speed)
 
     };
+
 
   });
 
@@ -216,7 +214,7 @@
       slideValuePorcentaje2.classList.add("show");
 
       visitantesNecesarios = Math.round(progressEndValue1 / inputSliderPorcentaje2.value) * 100;
-      console.log(visitantesNecesarios)
+      
       progressEndValueDos = visitantesNecesarios
       
 
@@ -236,9 +234,8 @@
       valueContainerDos.textContent = 0
       progressBarDos.style.background = `conic-gradient(
           
-          #8400FF ${progressValueDos * 0.4}deg,
-          #8400ff10 ${progressValueDos * 0.4}deg
-
+          #8400FF ${progressValueDos * 3.6}deg,
+          #8400ff10 ${progressValueDos * 3.6}deg
       )`;
     };
 
@@ -275,14 +272,28 @@
 
 
     /* FORMULAS DE RESULTADOS */
-    
+
+    let ingresototal = 0
     let ingresoPromedioPorCliente = document.getElementById("ingresoPromedioPorCliente");
     let resultadoIngresosTotales = document.getElementById("resultadoIngresosTotales");
     function ingresoTotal() {
         ingresototal = (clientesAlMes.value * ingresoPromedioPorCliente.value);
-        resultadoIngresosTotales.textContent = '$ '+ingresototal+' MXN'
+        resultadoIngresosTotales.textContent = '$ '+ingresototal.toLocaleString()+' MXN'
         
     };
+
+    function inversion(){
+      investment = costPerVisit.value * progressValueDos
+      textoInversion.textContent = '$ '+investment.toLocaleString()+' MXN'
+
+      costOfLead = investment / leadsAlMes;
+      costPerLead.textContent = '$ '+costOfLead.toFixed(2)+' MXN'
+
+      roas = (((ingresototal - investment)/investment) *100).toFixed(2)
+      roastext.textContent = roas+'%'
+    }
+
+    
 
 
 
